@@ -267,13 +267,13 @@ nav ul li {
     justify-content: space-between;
     margin: 30px;
 }
-.cardDetails .songsList .song .play{
+.cardDetails .songsList .song .songPlay{
     width: 30px;
     height: 30px;
     filter: invert(80%);
     cursor: pointer;
 }
-.cardDetails .songsList .song .play:hover{
+.cardDetails .songsList .song .songPlay:hover{
     filter: invert(100%);
 }
 .cardDetails .songsList .headings .headingInfo, .cardDetails .songsList .song .songInfo{
