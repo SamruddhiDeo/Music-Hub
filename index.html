@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify - Web Player: Music for everyone</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="logo"><img class="invert" src="/assets/logo.svg" alt="Logo"></li>
+                <li class="home"><img class="invert" height="22" src="/assets/home.svg" alt="Home"></li>
+                <li class="search">
+                    <input type="text" name="searchBar" placeholder="What do you want to play?" id="">
+                    <img class="invert" height="22" src="/assets/search.svg" alt="Home">
+                </li>
+                <button class="signup">Sign Up</button>
+                <button class="login">Log in</button>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="mainContainer">
+            <div class="left">
+                <div class="library">
+                    <div class="heading">
+                        <img src="/assets/library.svg" alt="library">
+                        <h5>Your Library</h5>
+                        <img src="/assets/plus.svg" alt="Plus">
+                    </div>
+                    <div class="playlists">
+                        <div class="createPlaylist">
+                            <p>Create your first playlist</p>
+                            <p>It's easy we'll help you</p>
+                            <button>Create playlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="links">
+                        <span>Legal</span>
+                        <span>Safety & Privacy Center</span>
+                        <span>Privacy Policy</span>
+                        <span>Cookies</span>
+                        <span>About Ads</span>
+                        <span>Accessibility</span>
+                    </div>
+                    <div class="language">
+                        <a href="">
+                            <img width="15" class="invert" src="/assets/language.svg" alt="Language">
+                            <p>English</p>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="right">
+                <div class="cardDetails">
+                    <div class="header">
+                        <img src="assets/artists/Shreya Ghoshal-Name,Artist-Singer/img.jpg" alt="">
+                        <div class="description">
+                            <p class="name">Shreya Ghoshal</p>
+                        </div>
+                    </div>
+                    <div class="songsList">
+                        <div class="headings">
+                            <div class="headingInfo">
+                                <p>#</p>
+                                <p>Title</p>
+                            </div>
+                            <img src="assets/clock.svg" alt="">
+                            <p></p>
+                        </div>
+                        <hr>
+                        <!-- <div class="song">
+                            <div class="songInfo">
+                                <p>1</p>
+                                <p>Yeh jawani hai deewani</p>
+                            </div>
+                            <p class="duration">3:97</p>
+                            <img class="play" src="assets/play.png" alt="">
+                        </div> -->
+
+                    </div>
+                </div>
+                <div class="categories">
+                    <div class="category">
+                        <div class="rightHeadings">
+                            <h2>Popular artists</h2>
+                            <p>Show all</p>
+                        </div>
+                        <div class="cards artists">
+
+                        </div>
+                    </div>
+                    <div class="category">
+                        <div class="rightHeadings">
+                            <h2>Popular albums and singles</h2>
+                            <p>Show all</p>
+                        </div>
+                        <div class="cards albums">
+                            <div class="cardInfo albumsInfo">
+                                <img src="assets/albums/album1.jpg" alt="">
+                                <div class="cardName">Pritam</div>
+                                <p>Artist</p>
+                            </div>
+                            <div class="cardInfo albumsInfo">
+                                <img src="assets/albums/album2.jpg" alt="">
+                                <div class="cardName">Pritam</div>
+                                <p>Artist</p>
+                            </div>
+                            <div class="cardInfo albumsInfo">
+                                <img src="assets/albums/album3.jpg" alt="">
+                                <div class="cardName">Pritam</div>
+                                <p>Artist</p>
+                            </div>
+                            <div class="cardInfo albumsInfo">
+                                <img src="assets/albums/album4.jpg" alt="">
+                                <div class="cardName">Pritam</div>
+                                <p>Artist</p>
+                            </div>
+                            <div class="cardInfo albumsInfo">
+                                <img src="assets/albums/album5.jpg" alt="">
+                                <div class="cardName">Pritam</div>
+                                <p>Artist</p>
+                            </div>
+                            <div class="cardInfo albumsInfo">
+                                <img src="assets/albums/album5.jpg" alt="">
+                                <div class="cardName">Pritam</div>
+                                <p>Artist</p>
+                            </div>
+                            <div class="cardInfo albumsInfo">
+                                <img src="assets/albums/album5.jpg" alt="">
+                                <div class="cardName">Pritam</div>
+                                <p>Artist</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="category yourLibrary">
+                    <div class="rightHeadings">
+                        <h2>Your Library</h2>
+                        <p>Show all</p>
+                    </div>
+                </div> -->
+                <div class="footer">
+                    <div class="otherLinks">
+                        <div class="company">
+                            <h5>Company</h5>
+                            <p>About</p>
+                            <p>Jobs</p>
+                            <p>For the Record</p>
+                        </div>
+                        <div class="communites">
+                            <h5>Communities</h5>
+                            <p>For Artists</p>
+                            <p>Developers</p>
+                            <p>Advertising</p>
+                            <p>Investors</p>
+                            <p>Vendors</p>
+                        </div>
+                        <div class="usefulLinks">
+                            <h5>Useful links</h5>
+                            <p>Support</p>
+                            <p>Free Mobile App</p>
+                        </div>
+                        <div class="spotifyPlans">
+                            <h5>Spotify Plans</h5>
+                            <p>Premium Individual</p>
+                            <p>Premium Duo</p>
+                            <p>Premium Family</p>
+                            <p>Premium Student</p>
+                            <p>Spotify Free</p>
+                        </div>
+                    </div>
+                    <div class="socialLinks">
+                        <a href="https://www.instagram.com/spotify/" target="_blank">
+                            <img class="invert" src="assets/instagramLogo.svg" alt="Instagram">
+                        </a>
+                        <a href="https://x.com/spotify?mx=2" target="_blank">
+                            <img class="invert" src="assets/twitterLogo.svg" alt="Twitter">
+                        </a>
+                        <a href="https://www.facebook.com/Spotify" target="_blank">
+                            <img class="invert" src="assets/facebookLogo.svg" alt="Facebook">
+                        </a>
+                    </div>
+                </div>
+                <hr>
+                <div class="copyRight">© 2025 Spotify AB</div>
+            </div>
+
+        </div>
+        <div class="playBarContainer">
+            <div class="playBarSongInfo">
+                <p>Illahi</p>
+                <p>Pritam</p>
+            </div>
+            <div class="playBarSeekBar">
+                <div class="playbuttons">
+                    <img class="previous" src="assets/previous.png" alt="">
+                    <img class="play" src="assets/play.png" alt="">
+                    <img class="next" src="assets/next.png" alt="">
+                </div>
+                <div class="seekBarContainer">
+                    <div class="currentDuration">2:03</div>
+                    <input class="songSeekBar" type="range" name="" id="">
+                    <div class="totalDuration">7:03</div>
+                </div>
+            </div>
+            <div class="playBarVolume">
+                <img class="volumeImg" src="assets/highVolume.png" alt="">
+                <input class="volumeSeekBar" type="range" name="" id="">
+            </div>
+        </div>
+    </main>
+
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
