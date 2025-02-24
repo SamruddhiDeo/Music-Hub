@@ -1,4 +1,5 @@
 let artists = document.querySelector(".artists");
+let play = document.querySelector(".play");
 let currentSong = new Audio();
 
 //Show all the artists on home
@@ -30,7 +31,7 @@ async function showArtists() {
     }
 }
 
-function playMusic(track){
+function playMusic(track) {
     // console.log(track)
     currentSong.src = track;
     currentSong.play();
@@ -46,15 +47,15 @@ async function main() {
     let songsList = document.querySelector(".songsList")
     let nameImg = document.querySelector(".header").getElementsByTagName("img")[0];
     let nameTitle = document.querySelector(".header").querySelector(".name");
-    
+
 
     // console.log(cardInfo)
     //listener on all artists/albums
     Array.from(cardInfo).forEach(async (e) => {
-        let type ;
-        let name ;
+        let type;
+        let name;
         let singer;
-        let folderName ;
+        let folderName;
         e.addEventListener("click", async () => {
             categories.style.display = "none";
             cardDetails.style.display = "block";
@@ -63,7 +64,7 @@ async function main() {
             name = e.querySelector(".cardName").innerHTML;
             singer = e.querySelector(".singer").innerHTML;
             folderName = `${name}-Name,${singer}-Singer`
-            nameImg.setAttribute("src", `assets/${type}/${folderName}/img.jpg`);
+            nameImg.setAttribute("src", `../assets/${type}/${folderName}/img.jpg`);
             nameTitle.innerHTML = name;
 
             // console.log(folderName);
@@ -99,18 +100,28 @@ async function main() {
 
             //play buttons listener
             Array.from(songPlayBtns).forEach(e => {
-e.addEventListener("click",()=>{
-    let songName = e.parentElement.children[0].lastElementChild.innerHTML
-    let song = `assets/${type}/${folderName}/songs/${songName}/${songName}.mp3` ;
-    
-    //to play song
-    playMusic(song);
-    
-    //change song playing info
-    document.querySelector(".playBarSongInfo").firstElementChild.innerHTML = songName;
-    document.querySelector(".playBarSongInfo").lastElementChild.innerHTML = name;
+                e.addEventListener("click", () => {
+                    let songName = e.parentElement.children[0].lastElementChild.innerHTML
+                    let song = `assets/${type}/${folderName}/songs/${songName}/${songName}.mp3`;
+                    console.log(e)
+                    //to play song
+                    
+                    playMusic(song);
+                    play.src = "assets/pause.png";
+                    // e.src = "assets/pause.png";
+                    if (e.src = "assets/pause.png") {
+                        currentSong.pause()
+                        e.src = "assets/play.png";
+                    } else {
+                        currentSong.play()
+                        e.src = "assets/pause.png";
+                    }
 
-})
+                    //change song playing info
+                    document.querySelector(".playBarSongInfo").firstElementChild.innerHTML = songName;
+                    document.querySelector(".playBarSongInfo").lastElementChild.innerHTML = name;
+
+                })
 
             });
         })
@@ -119,5 +130,15 @@ e.addEventListener("click",()=>{
 
 
 }
+
+play.addEventListener("click", () => {
+    if (currentSong.paused) {
+        currentSong.play()
+        play.src = "assets/pause.png";
+    } else {
+        currentSong.pause()
+        play.src = "assets/play.png";
+    }
+})
 
 main();
