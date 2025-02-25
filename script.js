@@ -4,21 +4,28 @@ let currentSong = new Audio();
 
 //Show all the artists on home
 async function showArtists() {
-    let fetchArtists = await fetch("assets/artists/")
-    let response = await fetchArtists.text();
+    // let fetchArtists = await fetch("assets/artists/")
+    // let response = await fetchArtists.text();
     // console.log(response)
-    let div = document.createElement("div")
-    div.innerHTML = response;
-    let anchors = Array.from(div.getElementsByTagName("a"));
+    // let div = document.createElement("div")
+    // div.innerHTML = response;
+    // let anchors = Array.from(div.getElementsByTagName("a"));
 
-    for (let i = 0; i < anchors.length; i++) {
-        // console.log(anchors[i].innerHTML);
-        if (anchors[i].innerHTML.endsWith("Singer/")) {
-            let folderName = anchors[i].innerHTML.toString().split(",");
-            let name = folderName[0].slice(0, -5);
+    let fetchArtists = await fetch("assets/artists/artists.json");
+    let artistsData = await fetchArtists.json();
+
+    artistsData.forEach(artist => {
+        let name = artist.name;
+        let singer = artist.singer;
+        let folderName = artist.folder;
+        let src = `assets/artists/${folderName}/img.jpg`;
+ 
+        // if (anchors[i].innerHTML.endsWith("Singer/")) {
+            // let folderName = anchors[i].innerHTML.toString().split(",");
+            // let name = folderName[0].slice(0, -5);
             // let singer = folderName[1] ? folderName[1].slice(0,-8) : "";
-            let singer = folderName[1].slice(0, -8);
-            let src = `${anchors[i].href}img.jpg`;
+            // let singer = folderName[1].slice(0, -8);
+            // let src = `${anchors[i].href}img.jpg`;
             // console.log(src);
             let html = ` <div class="cardInfo artistsInfo" data-type="artists">
                                 <img src="${src}" alt="vvv">
@@ -27,8 +34,8 @@ async function showArtists() {
                                 <img class="greenPlayBtn" width="43" src="assets/greenPlay.svg" alt="">
                             </div>`
             artists.innerHTML += html;
-        }
-    }
+        // }
+    });
 }
 
 function playMusic(track) {
@@ -126,8 +133,6 @@ async function main() {
             });
         })
     });
-
-
 
 }
 
