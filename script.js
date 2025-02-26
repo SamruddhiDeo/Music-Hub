@@ -87,7 +87,6 @@ async function main() {
     //listener on all artists/albums
     Array.from(cardInfo).forEach(async (e) => {
 
-      
 
         e.addEventListener("click", async () => {
             categories.style.display = "none";
@@ -96,35 +95,51 @@ async function main() {
             type = e.dataset.type;
             name = e.querySelector(".cardName").innerHTML;
             singer = e.querySelector(".singer").innerHTML;
+
+            localStorage.setItem('name', name);
+
             folderName = `${name}-Name,${singer}-Singer`
             nameImg.setAttribute("src", `../assets/${type}/${folderName}/img.jpg`);
             nameTitle.innerHTML = name;
 
             // console.log(folderName);
-            let fetchSongs = await fetch(`assets/${type}/${folderName}/songs`)
-            let response = await fetchSongs.text();
+            let fetchSongs = await fetch(`assets/${type}/${folderName}/songs.json`)
+            let songsData = await fetchSongs.json();
             // console.log(response)
-            let div = document.createElement("div")
-            div.innerHTML = response;
-            let anchors = Array.from(div.getElementsByTagName("a"));
-
+            // let div = document.createElement("div")
+            // div.innerHTML = response;
+            // let anchors = Array.from(div.getElementsByTagName("a"));
             let srno = 1;
-            for (let i = 0; i < anchors.length; i++) {
-                if (!(anchors[i].innerHTML.endsWith("./"))) {
-                    // console.log(anchors[i].innerHTML.slice(0,-1));
-                    let songName = anchors[i].innerHTML.slice(0, -1);
-                    let html = ` <div class="song">
-                            <div class="songInfo">
-                                <p>${srno++}</p>
-                                <p class="songName">${songName}</p>
-                            </div>
-                            <p class="duration">3:97</p>
-                            <img class="songPlay" src="assets/play.png" alt="">
-                        </div>`
-                    songsList.innerHTML += html;
-                }
+            songsData.forEach(song => {
+                let songName = song.name;
+                let html = ` <div class="song">
+                <div class="songInfo">
+                    <p>${srno++}</p>
+                    <p class="songName">${songName}</p>
+                </div>
+                <p class="duration">3:97</p>
+                <img class="songPlay" src="assets/play.png" alt="">
+            </div>`
+                songsList.innerHTML += html;
+            });
 
-            }
+            // let srno = 1;
+            // for (let i = 0; i < anchors.length; i++) {
+            //     if (!(anchors[i].innerHTML.endsWith("./"))) {
+            //         // console.log(anchors[i].innerHTML.slice(0,-1));
+            //         let songName = anchors[i].innerHTML.slice(0, -1);
+            //         let html = ` <div class="song">
+            //                 <div class="songInfo">
+            //                     <p>${srno++}</p>
+            //                     <p class="songName">${songName}</p>
+            //                 </div>
+            //                 <p class="duration">3:97</p>
+            //                 <img class="songPlay" src="assets/play.png" alt="">
+            //             </div>`
+            //         songsList.innerHTML += html;
+            //     }
+
+            // }
 
             //listener to songs
             let songPlayBtns = document.getElementsByClassName("songPlay")
@@ -140,7 +155,7 @@ async function main() {
 
                     //to play song
                     if ((currentSong.src == "") || (currentSongPlaySrc != "" && currentSongPlaySrc != song)) {
-                        if(currentSong.src == ""){
+                        if (currentSong.src == "") {
                             playBarContainer.style.display = "flex";
                         }
                         // console.log(currentSongPlaySrc+" != "+song)
@@ -267,18 +282,18 @@ next.addEventListener("click", () => {
     }
 })
 
-volumeSeekBar.addEventListener("input",(e)=>{
-    if(volumeSeekBar.value == 0){
-  volumeSeekBar.previousElementSibling.src =  "assets/mute.png"
-    }else if(volumeSeekBar.value>currentVolume){
-        volumeSeekBar.previousElementSibling.src =  "assets/highVolume.png"
-    }else{
-        volumeSeekBar.previousElementSibling.src =  "assets/lowVolume.png"
+volumeSeekBar.addEventListener("input", (e) => {
+    if (volumeSeekBar.value == 0) {
+        volumeSeekBar.previousElementSibling.src = "assets/mute.png"
+    } else if (volumeSeekBar.value > currentVolume) {
+        volumeSeekBar.previousElementSibling.src = "assets/highVolume.png"
+    } else {
+        volumeSeekBar.previousElementSibling.src = "assets/lowVolume.png"
 
     }
     currentVolume = volumeSeekBar.value;
     // console.log(volumeSeekBar.value)
-    currentSong.volume = volumeSeekBar.value/100;
+    currentSong.volume = volumeSeekBar.value / 100;
 })
 
 main();
