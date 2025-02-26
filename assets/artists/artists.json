@@ -3,6 +3,36 @@
       "name": "A.R. Rahman",
       "singer": "Artist",
       "folder": "A.R. Rahman-Name,Artist-Singer"
+    },
+    {
+      "name": "Arjit Singh",
+      "singer": "Artist",
+      "folder": "Arjit Singh-Name,Artist-Singer"
+    },
+    {
+      "name": "Pritam",
+      "singer": "Artist",
+      "folder": "Pritam-Name,Artist-Singer"
+    },
+    {
+      "name": "Sachin-Jigar",
+      "singer": "Artist",
+      "folder": "Sachin-Jigar-Name,Artist-Singer"
+    },
+    {
+      "name": "Shreya Ghoshal",
+      "singer": "Artist",
+      "folder": "Shreya Ghoshal-Name,Artist-Singer"
+    },
+    {
+      "name": "Udit Narayan",
+      "singer": "Artist",
+      "folder": "Udit Narayan-Name,Artist-Singer"
+    },
+    {
+      "name": "Vishal-Shekhar",
+      "singer": "Artist",
+      "folder": "Vishal-Shekhar-Name,Artist-Singer"
     }
 
   ]
