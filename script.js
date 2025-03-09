@@ -67,10 +67,12 @@ async function showAlbums() {
 }
 
 function playMusic(track) {
-    // console.log(track)
     currentSong.src = track;
-    currentSong.play();
-    totalDuration.innerHTML = convertToMinutesSeconds(currentSong.duration);
+    currentSong.addEventListener('loadedmetadata', () => {
+        totalDuration.innerHTML = convertToMinutesSeconds(currentSong.duration);
+        currentSong.play();
+    });
+   
 }
 
 async function main() {
@@ -82,12 +84,9 @@ async function main() {
     let nameImg = document.querySelector(".header").getElementsByTagName("img")[1];
     let nameTitle = document.querySelector(".header").querySelector(".name");
 
-
     // console.log(cardInfo)
     //listener on all artists/albums
     Array.from(cardInfo).forEach(async (e) => {
-
-
         e.addEventListener("click", async () => {
             categories.style.display = "none";
             cardDetails.style.display = "block";
@@ -102,26 +101,32 @@ async function main() {
             nameImg.setAttribute("src", `../assets/${type}/${folderName}/img.jpg`);
             nameTitle.innerHTML = name;
 
-            // console.log(folderName);
             let fetchSongs = await fetch(`assets/${type}/${folderName}/songs.json`)
             let songsData = await fetchSongs.json();
-            // console.log(response)
-            // let div = document.createElement("div")
-            // div.innerHTML = response;
-            // let anchors = Array.from(div.getElementsByTagName("a"));
+
+            //show songs data
             let srno = 1;
-            songsData.forEach(song => {
+            let htmlContent = '';
+            for (let song of songsData) {
                 let songName = song.name;
-                let html = ` <div class="song">
-                <div class="songInfo">
-                    <p>${srno++}</p>
-                    <p class="songName">${songName}</p>
-                </div>
-                <p class="duration">3:97</p>
-                <img class="songPlay" src="assets/play.png" alt="">
-            </div>`
-                songsList.innerHTML += html;
-            });
+                let audio = new Audio(`assets/${type}/${folderName}/songs/${songName}/${songName}.mp3`);
+                await new Promise(resolve => {
+                    audio.onloadedmetadata = () => {
+                        let duration = convertToMinutesSeconds(audio.duration);
+                        htmlContent += `
+                            <div class="song">
+                                <div class="songInfo">
+                                    <p>${srno++}</p>
+                                    <p class="songName">${songName}</p>
+                                </div>
+                                <p class="duration">${duration}</p>
+                                <img class="songPlay" src="assets/play.png" alt="">
+                            </div>`;
+                        resolve();
+                    };
+                });
+            }
+            songsList.innerHTML += htmlContent;
 
             // let srno = 1;
             // for (let i = 0; i < anchors.length; i++) {
@@ -143,8 +148,6 @@ async function main() {
 
             //listener to songs
             let songPlayBtns = document.getElementsByClassName("songPlay")
-            // let songs = songsList.getElementsByClassName("song");
-            // console.log(songs)
 
             //play buttons listener
             Array.from(songPlayBtns).forEach(e => {
@@ -180,7 +183,6 @@ async function main() {
                             play.src = "assets/play.png";
                             currentSongPlayBtn.src = "assets/play.png";
                         }
-
                     }
 
                     //change song playing info
@@ -192,7 +194,6 @@ async function main() {
             });
         })
     });
-
 }
 
 function convertToMinutesSeconds(seconds) {

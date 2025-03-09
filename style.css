@@ -269,7 +269,8 @@ nav ul li:last-child{
     display: none;
 }
 .playBarContainer > *{
-    flex-grow: 1;
+    /* flex-grow: 1; */
+    flex: 1;
 }
 .playBarSongInfo :nth-child(2){
     font-size: 14px;
