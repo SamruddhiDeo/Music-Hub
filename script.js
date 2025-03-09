@@ -116,7 +116,7 @@ async function main() {
                         <p>${srno++}</p>
                         <p class="songName">${songName}</p>
                     </div>
-                    <p class="duration">00:00</p>
+                    <p class="duration">0:00</p>
                     <img class="songPlay" src="assets/play.png" alt="">
                 </div>`;
     
