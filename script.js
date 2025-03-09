@@ -106,27 +106,30 @@ async function main() {
 
             //show songs data
             let srno = 1;
-            let htmlContent = '';
+            // let htmlContent = '';
             for (let song of songsData) {
                 let songName = song.name;
                 let audio = new Audio(`assets/${type}/${folderName}/songs/${songName}/${songName}.mp3`);
-                await new Promise(resolve => {
-                    audio.onloadedmetadata = () => {
-                        let duration = convertToMinutesSeconds(audio.duration);
-                        htmlContent += `
-                            <div class="song">
-                                <div class="songInfo">
-                                    <p>${srno++}</p>
-                                    <p class="songName">${songName}</p>
-                                </div>
-                                <p class="duration">${duration}</p>
-                                <img class="songPlay" src="assets/play.png" alt="">
-                            </div>`;
-                        resolve();
-                    };
-                });
+                let html = `
+                <div class="song" data-song="${songName}">
+                    <div class="songInfo">
+                        <p>${srno++}</p>
+                        <p class="songName">${songName}</p>
+                    </div>
+                    <p class="duration">00:00</p>
+                    <img class="songPlay" src="assets/play.png" alt="">
+                </div>`;
+    
+            songsList.innerHTML += html;
+    
+            // Now, once the metadata is loaded, we can update the duration
+            audio.addEventListener('loadedmetadata', () => {
+                const duration = convertToMinutesSeconds(audio.duration);
+                const songElement = document.querySelector(`.song[data-song="${songName}"]`);
+                songElement.querySelector('.duration').textContent = duration; // Update the duration text
+            });
             }
-            songsList.innerHTML += htmlContent;
+            // songsList.innerHTML += htmlContent;
 
             // let srno = 1;
             // for (let i = 0; i < anchors.length; i++) {
